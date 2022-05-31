@@ -1,0 +1,32 @@
+add_namespace = ecuador.news
+
+news_event = {
+	id = ecuador.news.1
+	title = "Military Coup in Ecuador"
+	desc = ecuador.news.1.d
+	picture = GFX_news_event_generic_rally2
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Interesting"
+	}
+
+}
+news_event = {
+	id = ecuador.news.2
+	title = "Gallo Presumed Dead in Communist Military Coup"
+	desc = ecuador.news.2.d
+	picture = GFX_news_event_ger_civil_war
+
+	major = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = "Oh my"
+	}
+
+}

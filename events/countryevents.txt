@@ -1,0 +1,162 @@
+country_event = {
+	id = soviet.ECU
+	title = "Ecuador seeks to join faction"
+	desc = "Ecuador would like to join your faction."
+	picture = GFX_report_event_stalin_01
+
+	is_triggered_only = yes
+
+	option = {
+		name = soviet.ECU.a
+		SOV = {
+			add_to_faction = ECU
+		}
+	}
+	option = {
+		name = soviet.ECU.b
+	}
+}
+
+add_namespace = ecuador
+
+country_event = {
+	id = ecuador.lcs
+	title = "Ecuador invites you to faction"
+	desc = "Would you like to join Ecuador's faction?"
+	picture = GFX_report_event_generic_sign_treaty3
+
+	is_triggered_only = yes
+
+	option = {
+		name = ecuador.lcs.a
+		ECU = {
+			add_to_faction = ROOT
+		}
+	}
+	option = {
+		name = ecuador.lcs.b
+	}
+}
+
+add_namespace = ecuador
+
+country_event = {
+	id = ecuador.2
+	title = "Far Right Extremists Gain Footing in the National Assembly"
+	desc = "Many politicians from the far right are gaining influence in the National Assembly."
+	picture = GFX_report_event_generic_conference
+
+	is_triggered_only = yes
+
+	option = {
+		name = ecuador.2.a
+		set_country_flag = support_fascists
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.04
+		}
+		ECU = {
+			complete_national_focus = ECU_radical_anti_communist_policies
+		}
+	}
+	option = {
+		name = ecuador.2.b
+		set_country_flag = support_democratic
+		add_stability = -0.05
+		swap_ideas = {
+			remove_idea = corrupt_government
+			add_idea = corrupt_government2
+		}
+		add_ideas = democracy_reinforced
+		ECU = {
+			complete_national_focus = ECU_strengthen_democracy
+		}
+	}
+}
+country_event = {
+	id = ecuador.3
+	title = "[ECU.GetName] Demands Loreto!"
+	desc = "tbd"
+	picture = GFX_
+	is_triggered_only = yes
+	option = { #accept
+		name = ecuador.3.a
+		ai_chance = {
+			factor = 25
+			modifier = { #accept if ecuador divisions > peru divisions x 1.5
+				factor = 90
+				set_temp_variable = {
+					perudivisions = PRU.num_divisions
+				}
+				multiply_temp_variable = {
+					perudivisions = 1.5
+				}
+				ECU = {
+					num_divisions > perudivisions
+				}
+			}
+			modifier = { #decline if big country can help them
+				factor = 0
+				any_other_country = {
+					NOT = {
+						tag = USA
+					}
+					is_major = yes
+					OR = {
+						is_in_faction_with = PRU
+						has_guaranteed = PRU
+					}
+				}
+			}
+		}
+		ECU = {
+			country_event = { days = 3 id = ecuador.4 }
+			effect_tooltip = {
+				transfer_state = 491
+			}
+		}
+	}
+	option = { #refuse
+		name = ecuador.3.b
+		ai_chance = {
+			factor = 75
+		}
+		ECU = {
+			country_event = { days = 3 id = ecuador.5 }
+			effect_tooltip = {
+				create_wargoal = {
+					type = take_state
+					target = ECU
+					generator = { 491 }
+				}
+			}
+		}
+	}
+}
+country_event = {
+	id = ecuador.4
+	title = "Peru Accepts Our Demands."
+	desc = "tbd"
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = ecuador.4.a
+		if = {
+			limit = {
+				491 = {
+					is_claimed_by = ECU
+					is_owned_by = PRU
+				}
+			}
+			ECU = { transfer_state = 491 }	
+			add_named_threat = {
+				threat = 2.5
+				name = ECU_annex_loreto
+			}
+		}
+	}
+}
+country_event = {
+	id = ecuador.5
+	title = "Peru Refuses Our Demands!"
+}
