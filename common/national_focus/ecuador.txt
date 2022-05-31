@@ -1,0 +1,884 @@
+focus_tree = {
+
+	id = ecuador
+	continuous_focus_position = { x = 20 y = 1050 } 
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = ECU
+		}
+	}
+	reset_on_civilwar = yes
+
+	#gran colombia unification
+	shared_focus = GCO_UNIFIED_gran_colombian_unification
+	#gallo coup
+	focus = {
+		id = ECU_gallo_coup
+		#icon = GFX_goal_class_a_reservists
+		icon = GFX_goal_generic_partisans
+		x = 5
+		y = 0
+		cost = 8
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		ai_will_do = { factor = 90 }
+		available = {
+			country_exists = ECU
+		}
+		completion_reward = {
+			create_country_leader = {
+				name = "Alberto Enríquez Gallo"
+				desc = ""
+				picture = "GFX_portrait_Alberto_Gallo"
+				expire = "1938.8.10"
+				ideology = socialism
+			}
+            set_party_name = { 
+		    	ideology = democratic 
+		    	long_name = ECU_neutrality_long 
+		    	name = ECU_neutrality
+			}
+			remove_ideas = politicized_military
+			news_event = {
+				id = ecuador.news.1
+				hours = 3
+			}
+			add_named_threat = {
+				threat = 0.5
+				name = "Gallo's Coup"
+			}
+		}	
+			
+			
+	}
+	focus = {
+		id = ECU_radicalise_left
+		icon = GFX_goal_support_communism
+		x = 4
+		y = 1
+		cost = 6
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = ECU_gallo_coup
+		}
+		mutually_exclusive = {
+			focus = ECU_comprimise_with_far_left
+			focus = ECU_consolidate_cabinet
+		}
+		bypass = {
+			has_government = communism
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+			add_political_power = 50
+			add_stability = -0.05
+			add_ideas = radicalised_left
+		}
+	}
+	focus = {
+		id = ECU_expand_communist_support
+		icon = GFX_ECU_communist_support
+		x = 4
+		y = 2
+		cost = 5
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		ai_will_do = {
+			factor = 30
+		}
+		prerequisite = {
+			focus = ECU_radicalise_left
+		}
+		bypass = {
+			has_government = communism
+		}
+		available = {
+			if = {
+				communism > 0.3
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = radicalised_left
+				add_idea = radicalised_left2
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.1
+			}
+		}
+	}
+	focus = {
+		id = ECU_counter_coup
+		icon = GFX_focus_SOV_mobilization_plan
+		x = 4
+		y = 3
+		cost = 12
+		search_filters = {
+			FOCUS_FILTER_FRA_POLITICAL_VIOLENCE
+		}
+		ai_will_do = {
+			factor = 60
+		}
+		prerequisite = {
+			focus = ECU_expand_communist_support
+		}
+		bypass = {
+			has_government = communism
+		}
+		available = {
+			if = {
+				communism > 0.55
+			}
+		}
+		select_effect = {
+			add_stability = -0.1
+		}
+		completion_reward = {
+			custom_effect_tooltip = gallo_dead_disclaimer_tt
+			set_politics = {
+				ruling_party = communism
+			}
+			news_event = {
+				id = ecuador.news.2
+				hours = 3
+			}
+			add_named_threat = {
+				threat = 1
+				name = "Communist Coup in Ecuador"
+			}
+			hidden_effect = {
+				add_popularity = {
+					ideology = communism
+					popularity = 0.05
+				}
+				ECU = {
+					kill_ideology_leader = democratic
+				}
+				create_country_leader = {
+					name = "Carlos Alberto Arroyo"
+					desc = ""
+					picture = "GFX_portrait_Carlos_Alberto_Arroyo"
+					expire = "1944.5.28"
+					ideology = liberalism
+				}
+				add_stability = 0.15
+			}
+		}
+	}
+	focus = {
+		id = ECU_join_comintern
+		icon = GFX_ECU_join_comintern
+		cost = 2
+		x = 5
+		y = 4
+		search_filters = { FOCUS_FILTER_ALLIANCE }
+		prerequisite = {
+			focus = ECU_counter_coup
+		}
+		mutually_exclusive = {
+			focus = ECU_create_communist_faction
+		}
+		available = {
+			SOV = {
+				is_faction_leader = yes
+				is_puppet = no
+				has_capitulated = no
+				has_government = communism
+			}
+		}
+		completion_reward = {
+			SOV = {
+				country_event = soviet.ECU
+			}
+		}
+	}
+	focus = {
+		id = ECU_comprimise_with_far_left
+		icon = GFX_ECU_purge_far_left
+		cost = 4
+		x = 10
+		y = 1
+		ai_will_do = {
+			factor = 80
+		}
+		prerequisite = {
+			focus = ECU_gallo_coup
+		}
+		mutually_exclusive = {
+			focus = ECU_radicalise_left
+			focus = ECU_consolidate_cabinet
+		}
+		completion_reward = {
+			country_event = ecuador.2
+			add_popularity = {
+				ideology = communism
+				popularity = -0.01
+			}
+			add_ideas = far_left_purged
+		}
+	}
+	focus = {
+		id = ECU_seize_mean
+		icon = GFX_ECU_seize_mean
+		cost = 2
+		x = 4
+		y = 5
+		search_filters = {FOCUS_FILTER_INDUSTRY}
+		prerequisite = {
+			focus = ECU_create_communist_faction
+			focus = ECU_join_comintern
+		}
+		completion_reward = {
+			add_extra_state_shared_building_slots = 1
+			305 = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = ECU_create_communist_faction
+		icon = GFX_ECU_communist_south_america
+		cost = 2.5
+		x = 2
+		y = 4
+		search_filters = { FOCUS_FILTER_ALLIANCE }
+		prerequisite = {
+			focus = ECU_counter_coup
+		}
+		mutually_exclusive = {
+			focus = ECU_join_comintern
+		}
+		bypass = {
+			ECU = {
+				is_faction_leader = yes
+			}
+		}
+		available = {
+			is_in_faction = no
+			custom_trigger_tooltip = {
+				tooltip = "More than 1 country in South America is communist"
+				set_temp_variable = { temp = 0 }
+    			all_country = {
+					if = {
+        				limit = {
+							capital_scope = {
+           						is_on_continent = south_america            					
+							}
+            				has_government = communism
+        				}
+        				add_to_temp_variable = { temp = 1 }
+    				}
+				}
+				check_variable = { temp > 1 }
+			}
+			
+		}
+		completion_reward = {
+			set_rule = {
+				desc = "Can Create Factions"
+				can_create_factions = yes
+			}
+			create_faction = "Liga Comunista Sudamericana"
+			custom_effect_tooltip = lcs_event_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						VEN = {
+							has_government = communism
+							NOT = { is_in_faction = yes }
+							NOT = { has_war_with = ECU }
+						}
+					}
+					VEN = { country_event = { id = ecuador.lcs hours = 6 } }
+				}
+				if = {
+					limit = {
+						PRU = {
+							has_government = communism
+							NOT = { is_in_faction = yes }
+							NOT = { has_war_with = ECU }
+						}
+					}
+					PRU = { country_event = { id = ecuador.lcs hours = 6 } }
+				}
+				if = {
+					limit = {
+						COL = {
+							has_government = communism
+							NOT = { is_in_faction = yes }
+							NOT = { has_war_with = ECU }
+						}
+					}
+					COL = { country_event = { id = ecuador.lcs hours = 6 } }
+				}
+				if = {
+					limit = {
+						BOL = {
+							has_government = communism
+							NOT = { is_in_faction = yes }
+							NOT = { has_war_with = ECU }
+						}
+					}
+					BOL = { country_event = { id = ecuador.lcs hours = 6 } }
+				}
+				if = {
+					limit = {
+						PAR = {
+							has_government = communism
+							NOT = { is_in_faction = yes }
+							NOT = { has_war_with = ECU }
+						}
+					}
+					PAR = { country_event = { id = ecuador.lcs hours = 6 } }
+				}
+			}
+		}
+	}
+	focus = {
+		id = ECU_purge_corruption
+		icon = GFX_focus_rom_parties_end
+		cost = 3
+		x = 10
+		y = 3
+		prerequisite = {
+			focus = ECU_strengthen_democracy
+			focus = ECU_radical_anti_communist_policies
+		}
+		available = {
+			OR = {
+				has_country_flag = support_fascists
+				has_country_flag = {
+					flag = support_democratic
+					days > 21
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = ECU_pay_off_opponents
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_flag = {
+						flag = support_democratic
+						days < 42
+					}
+				}
+				swap_ideas = {
+					remove_idea = corrupt_government2
+					add_idea = corrupt_government
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = {
+						flag = support_democratic
+						days > 42
+					}
+				}
+				remove_ideas = corrupt_government2
+			}
+			if = {
+				limit = {
+					has_country_flag = support_fascists
+				}
+				remove_ideas = corrupt_government
+			}
+			else = {
+				custom_effect_tooltip = ECU_pay_off_opponents_tt
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.01
+			}
+		}
+	}
+	focus = {
+		id = ECU_purge_cabinet
+		#icon = GFX_
+		cost = 3
+		x = 1
+		y = 6
+		prerequisite = {
+			focus = ECU_seize_mean
+		}
+		completion_reward = {
+			remove_ideas = corrupt_government
+		}
+	}
+	focus = {
+		id = ECU_strengthen_democracy
+		icon = GFX_goal_support_democracy
+		cost = 0
+		x = 6
+		y = 2
+		prerequisite = {
+			focus = ECU_comprimise_with_far_left
+		}
+		available = {
+			has_country_flag = support_democratic
+		}
+		bypass = {
+			has_country_flag = support_democratic
+		}
+		mutually_exclusive = {
+			focus = ECU_radical_anti_communist_policies
+		}
+		completion_reward = {
+			custom_effect_tooltip = ECU_strengthen_democracy_tt
+		}
+	}
+	focus = {
+		id = ECU_radical_anti_communist_policies
+		icon = GFX_ECU_radical_anti_communism
+		cost = 0
+		x = 12
+		y = 2
+		prerequisite = {
+			focus = ECU_comprimise_with_far_left
+		}
+		available = {
+			has_country_flag = support_fascists
+		}
+		bypass = {
+			has_country_flag = support_fascists
+		}
+		mutually_exclusive = {
+			focus = ECU_strengthen_democracy
+		}
+		completion_reward = {
+			custom_effect_tooltip = "Arsenio Guerrero gains influence in the National Assembly."
+			#create_country_leader = {
+			#	name = "Arsenio Guerrero"
+			#	ideology = conservatism
+			#	traits = {
+			#		add_traits = fascist_sympathies
+			#		add_traits = anti_communist
+			#	}
+			#}	
+			set_party_name = {
+				ideology = democratic
+				long_name = "Partido Nacional Conservador"
+				name = "PNC"
+			}
+		}
+	}
+	focus = {
+		id = ECU_liberate_argentine_workers
+		icon = GFX_ECU_liberate_argentine_workers
+		cost = 5
+		x = 2
+		y = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = "More than 2 countries in faction"
+				set_temp_variable = { temp2 = 0 }
+				all_country = {
+					if = {
+						limit = {
+							is_in_faction_with = ECU
+						}
+						add_to_temp_variable = { temp2 = 1 }
+					}
+				}
+				check_variable = { temp2 > 2 }	
+			}
+			custom_trigger_tooltip = {
+				tooltip = "At least one country in faction borders Argentina"
+				all_allied_country = {
+					all_neighbor_country = {
+						if = {
+							limit = { tag = ARG }
+							always = yes
+						}
+					}
+				}
+			}
+			has_army_manpower = {
+				size > 19999
+			}
+		}
+		prerequisite = {
+			focus = ECU_create_communist_faction
+			focus = ECU_join_comintern
+		}
+		mutually_exclusive = {
+			focus = ECU_invite_argentina
+		}
+		will_lead_to_war_with = ARG
+		completion_reward = {
+			create_wargoal = {
+				type = puppet_wargoal_focus
+				target = ARG
+			}
+		}
+	}
+	focus = {
+		id = ECU_soviet_tech_share
+		icon = GFX_focus_research2
+		cost = 3
+		x = 6
+		y = 5
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		prerequisite = {
+			focus = ECU_join_comintern
+		}
+		completion_reward = {
+			add_tech_bonus = {
+                name = electronics_bonus
+                bonus = 0.75
+                uses = 1
+                category = electronics
+            }
+            add_tech_bonus = {
+                name = industrial_bonus
+                bonus = 1
+                uses = 1
+                category = industry
+            }   
+            add_tech_bonus = {
+                name = infantry_weapons_bonus
+                bonus = 1
+                uses = 1
+                category = infantry_weapons
+                category = artillery
+            }
+		}
+	}
+	focus = {
+		id = ECU_invite_argentina
+		icon = GFX_ECU_deal_argentina
+		cost = 4
+		x = 0
+		y = 5
+		search_filters = { FOCUS_FILTER_ALLIANCE }
+		available = {
+			ARG = {
+				has_government = communism
+				is_in_faction = no
+				is_subject = no
+			}
+		}
+		prerequisite = {
+			focus = ECU_create_communist_faction
+		}
+		mutually_exclusive = {
+			focus = ECU_liberate_argentine_workers
+		}
+		completion_reward = {
+			ARG = {
+				country_event = { id = ecuador.lcs hours = 6 }
+			}
+		}
+	}
+	focus = {
+		id = ECU_five_year_plan
+		icon = GFX_
+		cost = 6
+		x = 5
+		y = 6
+		search_filters = {FOCUS_FILTER_INDUSTRY}
+		prerequisite = {
+			focus = ECU_seize_mean
+			focus = ECU_soviet_tech_share
+		}
+		completion_reward = { }
+	}
+	focus = {
+		id = ECU_spanish_civil_war_involvement
+		icon = GFX_goal_generic_spanish_civil_war_soldier
+		cost = 4
+		x = 3
+		y = 6
+		prerequisite = {
+			focus = ECU_seize_mean
+		}
+		available = {
+			has_global_flag = spanish_civil_war
+			has_war = no
+			NOT = {
+				has_global_flag = r56_scw_our_own_ending_check 
+			}
+		}
+		completion_reward = {
+			set_rule = { can_send_volunteers = yes }
+			add_timed_idea = {
+				idea = r56_CHL_spanish_civil_war_involvement
+				days = 1100
+			}
+			
+		}
+	}
+	focus = {
+		id = ECU_pay_off_opponents
+		icon = GFX_goal_generic_aristocratic_cooperation
+		cost = 2
+		x = 12
+		y = 3
+		mutually_exclusive = {
+			focus = ECU_purge_corruption
+		}
+		prerequisite = {
+			focus = ECU_radical_anti_communist_policies
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = corrupt_government
+				add_idea = corrupt_government2
+			}
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+		}
+	}
+	focus = {
+		id = ECU_join_allies
+		icon = GFX_allies
+		cost = 4
+		x = 6
+		y = 3
+		search_filters = { FOCUS_FILTER_ALLIANCE }
+		prerequisite = {
+			focus = ECU_strengthen_democracy
+		}
+		available = {
+			is_in_faction = no
+			has_government = democratic
+			is_subject = no
+			ENG = {
+				is_faction_leader = yes
+				has_government = democratic
+			}
+		}
+		completion_reward = {
+			ENG = {
+				country_event = generic.2
+			}
+		}
+	}
+	focus = {
+		id = ECU_join_rio_pact
+		icon = GFX_
+		cost = 0
+		x = 11
+		y = 5
+		search_filters = { FOCUS_FILTER_ALLIANCE }
+		prerequisite = {
+			focus = ECU_potential_civil_war
+		}
+		prerequisite = {
+			focus = ECU_fascist_support
+		}
+		available = {
+			OR = {
+				BRA = { has_completed_focus = bra_sem_eixo }
+				AND = {
+					BRA = {
+						has_government = fascism
+						is_faction_leader = yes
+					}
+				}
+			}
+			is_in_faction = no
+			has_government = fascism
+			has_civil_war = no
+		}
+		mutually_exclusive = {
+			focus = ECU_join_axis
+		}
+		completion_reward = {
+			BRA = {
+				country_event = generic.2
+			}
+		}
+	}
+	focus = {
+		id = ECU_join_axis
+		icon = GFX_goal_generic_the_axis
+		cost = 0
+		x = 9
+		y = 5
+		search_filters = { FOCUS_FILTER_ALLIANCE }
+		prerequisite = {
+			focus = ECU_potential_civil_war
+		}
+		prerequisite = {
+			focus = ECU_fascist_support
+		}
+		available = {
+			OR = {
+				GER = {
+					is_faction_leader = yes
+					has_government = fascism
+					is_subject = no
+				}
+				any_country = {
+					is_major = yes
+					is_faction_leader = yes
+					has_government = fascism
+					capital_scope = {
+						is_on_continent = europe
+					}
+				}
+			}
+			is_in_faction = no
+			has_government = fascism
+			is_subject = no
+			has_civil_war = no
+		}
+		mutually_exclusive = {
+			focus = ECU_join_rio_pact
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					GER = {
+						is_faction_leader = yes
+						has_government = fascism
+						is_subject = no
+					}
+				}
+				GER = {
+					country_event = generic.2
+				}
+			}
+			else_if = {
+				limit = {
+					any_country = {
+						is_major = yes
+						is_faction_leader = yes
+						has_government = fascism
+						capital_scope = {
+							is_on_continent = europe
+						}
+					}
+				}
+				THIS = {
+					country_event = generic.2
+				}
+			}
+		}
+	}
+	focus = {
+		id = ECU_potential_civil_war
+		icon = GFX_
+		cost = 6
+		x = 10
+		y = 4
+		available = {
+			has_country_flag = support_fascists
+		}
+		prerequisite = {
+			focus = ECU_pay_off_opponents
+			focus = ECU_purge_corruption
+		}
+		completion_reward = { }
+	}
+	focus = {
+		id = ECU_fascist_support
+		icon = GFX_ECU_consolidate_army
+		cost = 5
+		x = 12
+		y = 4
+		prerequisite = {
+			focus = ECU_pay_off_opponents
+		}
+		completion_reward = { }
+	}
+	focus = {
+		id = ECU_american_research
+		icon = GFX_
+		cost = 4
+		x = 8
+		y = 3
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		prerequisite = {
+			focus = ECU_strengthen_democracy
+		}
+		completion_reward = { }
+	}
+	focus = {
+		id = ECU_consolidate_power
+		icon = GFX_ECU_gallo_coup-228121
+		cost = 6
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = ECU_gallo_coup
+		}
+		mutually_exclusive = {
+			focus = ECU_radicalise_left
+			focus = ECU_comprimise_with_far_left
+		}
+		completion_reward = { }
+	}
+	focus = {
+		id = ECU_war_with_peru
+		icon = GFX_
+		cost = 5
+		prerequisite = {
+			focus = ECU_seize_mean
+		}
+		bypass = {
+			491 = {
+				controller = {
+					tag = ECU
+				}
+			}
+		}
+		available = {
+			has_army_manpower = {
+				size > 11999
+			}
+			PRU = {
+				NOT = {
+					is_in_faction_with = ECU
+				}
+				is_subject = no
+			}
+		}
+		relative_position_id = ECU_seize_mean
+		y = 2
+		completion_reward = {
+			PRU = {
+				country_event = {
+					id = ecuador.3
+					days = 4
+				}
+			}
+		}
+	}
+	focus = {
+		id = ECU_lcs_tech_share
+		icon = GFX_
+		cost = 4.5
+		relative_position_id = ECU_invite_argentina
+		x = -1
+		y = 1
+		available = {
+
+		}
+		prerequisite = {
+			focus = ECU_create_communist_faction
+		}
+		completion_reward = { }
+	}
+}
