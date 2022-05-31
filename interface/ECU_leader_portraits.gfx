@@ -1,0 +1,10 @@
+spriteTypes = {
+    spriteType = {
+        name = "GFX_portrait_Alberto_Gallo"
+        textureFile = "gfx/leaders/ECU/r56_portrait_gallo.dds"
+    }
+    spriteType = {
+        name = "GFX_portrait_Carlos_Alberto_Arroyo"
+        textureFile = "gfx/leaders/ECU/base_portrait_arroyo.dds"
+    }
+}

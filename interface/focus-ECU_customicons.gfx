@@ -1,0 +1,203 @@
+spriteTypes = {	##Icon For: 
+	SpriteType = { 
+		name = "GFX_ECU_gallo_coup-228121"
+		texturefile = "gfx/interface/goals/GFX_ECU_gallo_coup-228121.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_radicalise_left"
+		texturefile = "gfx/interface/goals/GFX_ECU_radicalise_left.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_purge_far_left"
+		texturefile = "gfx/interface/goals/GFX_ECU_purge_far_left.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_seize_mean"
+		texturefile = "gfx/interface/goals/GFX_ECU_seize_mean.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_join_comintern"
+		texturefile = "gfx/interface/goals/GFX_ECU_join_comintern.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_communist_support"
+		texturefile = "gfx/interface/goals/GFX_ECU_communist_support.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_communist_south_america"
+		texturefile = "gfx/interface/goals/GFX_ECU_communist_south_america.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_radical_anti_communism"
+		textureFile = "gfx/interface/goals/GFX_ECU_radical_anti_communism.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_deal_argentina"
+		textureFile = "gfx/interface/goals/GFX_ECU_invite_argentina.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_deal_chile"
+		textureFile = "gfx/interface/goals/GFX_ECU_invite_chile.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_liberate_argentine_workers"
+		textureFile = "gfx/interface/goals/GFX_ECU_liberate_argentine_workers.dds"
+	}
+	spriteType = {
+		name = "GFX_ECU_consolidate_army"
+		textureFile = "gfx/interface/goals/GFX_ECU_test_army_focus.dds"
+	}
+
+	##Icon Shine For: 
+	SpriteType = { 
+		name = "GFX_ECU_gallo_coup-228121_shine"
+		texturefile = "gfx/interface/goals/GFX_ECU_gallo_coup-228121.dds"
+		effectFile = "gfx/FX/buttonstate.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_gallo_coup-228121.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = -90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_gallo_coup-228121.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = 90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		legacy_lazy_load = no
+	}
+	SpriteType = { 
+		name = "GFX_ECU_radicalise_left_shine"
+		texturefile = "gfx/interface/goals/GFX_ECU_radicalise_left.dds"
+		effectFile = "gfx/FX/buttonstate.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_radicalise_left.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = -90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_radicalise_left.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = 90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		legacy_lazy_load = no
+	}
+	SpriteType = { 
+		name = "GFX_ECU_communist_south_america_shine"
+		texturefile = "gfx/interface/goals/GFX_ECU_communist_south_america.dds"
+		effectFile = "gfx/FX/buttonstate.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_communist_south_america.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = -90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_communist_south_america.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = 90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		legacy_lazy_load = no
+	}
+	SpriteType = { 
+		name = "GFX_ECU_radical_anti_communism_shine"
+		texturefile = "gfx/interface/goals/GFX_ECU_radical_anti_communism.dds"
+		effectFile = "gfx/FX/buttonstate.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_radical_anti_communism.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = -90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_radical_anti_communism.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = 90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		legacy_lazy_load = no
+	}
+	SpriteType = { 
+		name = "GFX_ECU_liberate_argentine_workers_shine"
+		texturefile = "gfx/interface/goals/GFX_ECU_liberate_argentine_workers.dds"
+		effectFile = "gfx/FX/buttonstate.lua"
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_liberate_argentine_workers.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = -90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		animation = {
+			animationmaskfile = "gfx/interface/goals/GFX_ECU_liberate_argentine_workers.dds"
+			animationtexturefile = "gfx/interface/goals/shine_overlay.dds"
+			animationrotation = 90.0
+			animationlooping = no
+			animationtime = 0.75
+			animationdelay = 0
+			animationblendmode = "add"
+			animationtype = "scrolling"
+			animationrotationoffset = { x = 0.0 y = 0.0 }
+			animationtexturescale = { x = 1.0 y = 1.0 } 
+		}
+		legacy_lazy_load = no
+	}
+
+}
